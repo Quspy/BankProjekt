@@ -37,7 +37,7 @@ public class DBConnection
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             
             String query = "select * from banktransaction where OwnerPesel ='"+pesel+"'";
             Statement st = con.createStatement();
@@ -65,7 +65,7 @@ public class DBConnection
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             
             PreparedStatement pstmt = con.prepareStatement("Insert into banktransaction values(?,?,?,?,?,?,?)");
             pstmt.setString(1,trans.getReceiverAccountNumber());
@@ -88,7 +88,7 @@ public class DBConnection
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             String accNumb =String.valueOf(trans.getReceiverAccountNumber());
             String query = "select * from bankaccount join accountowner on(bankaccount.OwnerPesel = accountowner.OwnerPesel)where bankaccount.AccountNumber = '"+accNumb+"'";
             Statement st = con.createStatement();
@@ -110,7 +110,7 @@ public class DBConnection
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             
             String query = "Select*from bankaccount where OwnerPesel ='"+login+"'";
             Statement st = con.createStatement();
@@ -133,7 +133,7 @@ public class DBConnection
         {
             double balance = sac.getBalance();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             PreparedStatement pstmt = con.prepareStatement("UPDATE bankaccount SET AccountBalance = ? WHERE OwnerPesel = '"+login+"'");
             pstmt.setString(1,String.valueOf(balance));
             pstmt.execute();
@@ -149,7 +149,7 @@ public class DBConnection
         {
             double balance =sac.getBalance();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             PreparedStatement pstmt = con.prepareStatement("UPDATE bankaccount SET AccountBalance = AccountBalance+ ? WHERE OwnerPesel = '"+pesel+"'");
             pstmt.setString(1,String.valueOf(balance));
             pstmt.execute();
@@ -166,7 +166,7 @@ public class DBConnection
         {
             double balance =trans.getSendAmount();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             PreparedStatement pstmt = con.prepareStatement("UPDATE bankaccount SET AccountBalance = AccountBalance+ ? WHERE AccountNumber = '"+accNumb+"'");
             pstmt.setString(1,String.valueOf(balance));
             pstmt.execute();
@@ -182,7 +182,7 @@ public class DBConnection
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             
             String query = "Select*from accountowner where OwnerPesel ='"+pesel+"'";
             Statement st = con.createStatement();
@@ -213,7 +213,7 @@ public class DBConnection
         {
             String pesel = AccountPeselTxtbox1.getText();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
 
             String query ="select*from bankaccount where OwnerPesel = '"+pesel+"' ";
             Statement st = con.createStatement();
@@ -236,7 +236,7 @@ public class DBConnection
         {
             String pesel = AccountPeselTxtbox.getText();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
 
             PreparedStatement pstmt = con.prepareStatement("delete from accountowner where OwnerPesel = '"+pesel+"' ");
             pstmt.executeUpdate();
@@ -256,7 +256,7 @@ public class DBConnection
         {
             
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO accountowner VALUES(?,?,?,?,?,?,?)");
             pstmt.setString(1,RegisterFirstNameTxtbox.getText());
             pstmt.setString(2,RegisterLastNameTxtbox.getText());
@@ -292,7 +292,7 @@ public class DBConnection
         try 
         {
           Class.forName("com.mysql.jdbc.Driver");
-          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","Psu9c9jj");
+          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_projekt","root","pass");
           
           PreparedStatement pstmt = con.prepareStatement("select * from bankaccount where AccountLogin =? and AccountPassword=? and OwnerPesel = ?");
           pstmt.setString(1, login);
